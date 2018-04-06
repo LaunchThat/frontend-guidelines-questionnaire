@@ -5,17 +5,49 @@ A one-page questionnaire to help your team establish effective frontend guidelin
 ### HTML Principles
 - **What are some general principles your team should follow when writing HTML?** *(for example, authoring semantic HTML5 markup, accessibility, etc. See [these](http://www.yellowshoe.com.au/standards/#html) [resources](http://codeguide.co/#html) for [inspiration](http://manuals.gravitydept.com/code/html))*
 
-TEST
+- Not more than one `h1` on a page. Use proper heading structure
+- HTML5 valid syntax. `<section />`, `<article />`, `<main />`. 
+- 
+
 
 
 ### HTML Tools
-- **Are you using an HTML preprocessor** *(such as [HAML](http://haml.info/), [Jade](http://jade-lang.com/), etc)*?
+
 - **Are you using a templating engine** *(such as [Mustache](https://mustache.github.io/), [Handlebars](http://handlebarsjs.com/), etc)*?
+
+- Twig via Timber
+- React
+- Vue
+- Blade - moving away from that
+
+General sense of moving towards Twig and away from Blade
+
+
 - **Does your backend architecture influence the frontend markup in any way** (for example, WordPress will add `wp-paginate` to a class in your markup)? If so, can you highlight these conventions? 
 
+- `srcset` Wordpress takes over. Override it with a hook
+- `wp_smiley` 
+- React will add IDs 
+- `pb` - namespace for page builder. 
+- `pb-wysywig` - 
+
+
 ### HTML Style
-- **Spaces or Tabs?**
-- **What does HTML commenting look like?** 
+- **Spaces or Tabs?** - TABS
+- **What does HTML commenting look like?** - 
+
+For loops, write before the loop
+- Aspirational - HTML Comments for block-level, multi-line HTML tags
+```
+No comment needed
+<h1>Twoiefwo</h1>
+
+<div class="c-card__body-->
+   [STUFF]
+</div><!--end c-card__body-->
+```
+
+.editorconfig
 
 ---------------
 
@@ -24,23 +56,65 @@ TEST
 ### CSS Principles
 - **What are some general principles your team should follow when writing CSS?** *(For example, modularity, avoiding long selector strings, etc. See [these](http://cssguidelin.es/) [resources](http://www.yellowshoe.com.au/standards/#css) [for](http://manuals.gravitydept.com/code/css) [inspiration](http://codeguide.co/#css))*
 
+- Avoid conflicts
+- Clarity trumps succinctness -
+- 
+
 ### CSS Methodology
 - **Is your team using a CSS methodology** *(such as [SMACSS](https://smacss.com/), [BEM](https://en.bem.info/method/), or [OOCSS](http://oocss.org/))*? If yes, where is the documentation for that methodology?
 - **Are you deviating from the methodology in any way?** If so, can you highlight these conventions?
 
+
+````
+
+.lt-c-button {}
+
+.lt-c-card {}
+
+````
+
+Lunar
+CSS-in-JS
+
+"Let's all shift to Nuxt"
+
+
+```
+
+.c-card {
+   
+   
+    &--inverted { }
+}
+
+
+.c-card--inverted { }
+```
+
 ### CSS Tools
 - **Is the team using a preprocessor** *(such as [Sass](http://sass-lang.com/) or [Less](http://lesscss.org/))*?
 - **What are the guidelines for using that preprocessor** *(check out [Sass Guidelines](https://sass-guidelin.es/) for inspiration)*?
+
+- Never use extends
+- Minimize nesting
+- Media queries nesting
+- `rem` units not `px`. Use `em` for media queries
+- Mixins. 
+- Grid system is mixins. Apply to layout component. 
+- Flexbox but no CSS Grid. Polyfills.
+
+
+
+
 - **Are you using a CSS base** *(such as [Normalize](https://necolas.github.io/normalize.css/) or a [reset](http://meyerweb.com/eric/tools/css/reset/))*?
 - **Are you using any CSS postprocessors** *(such as [Prefixfree](https://leaverou.github.io/prefixfree/) or [Autoprefixer](https://github.com/postcss/autoprefixer))*?
 - **Are there specific CSS techniques you're utilizing** *(such as [critical CSS](https://www.smashingmagazine.com/2015/08/understanding-critical-css/))*?
 
 ### CSS Frameworks
-- **Is the team using a framework** *(such as [Bootstrap](https://getbootstrap.com/) or [Foundation](http://foundation.zurb.com/))*? If yes, where is the documentation for that framework?
-- **Are you deviating from the framework in any way?** If so, can you highlight these conventions?
+- **Is the team using a framework** *(such as [Bootstrap](https://getbootstrap.com/) or [Foundation](http://foundation.zurb.com/))*? No. 
 
 ### CSS Style
-- **Spaces or Tabs?**
+- **Spaces or Tabs?** - Tabs 
 - **Spacing around rules?**
 - **[Grouping](https://smacss.com/book/formatting#grouping) properties?**
 - **What does CSS commenting look like?** 
@@ -51,6 +125,16 @@ TEST
 
 ### JavaScript Principles
 - **What are some general principles your team should follow when writing JavaScript?** *(See [these](https://github.com/airbnb/javascript) [resources](https://github.com/rwaldron/idiomatic.js) for [inspiration](https://github.com/styleguide/javascript))*
+
+- "I don't what HTML is" - Lunar
+- Consolidate plugins into a `libs` folder. 
+- Minimize libraries. Opt for internal libraries vs external libraries. 
+- jQuery is doing heavy lifting. jQuery isn't going away. 
+- avoid jQuery animation
+- Use jQuery for selectors, ajax, loops, plugins (carousel, lightbox). 
+- Global.js is our shame.css
+- form validation built on top of jqValidate
+- Modernizr - Flexbox support, touch events, general browser support, mq-dependant JavaScript
 
 
 ### JavaScript tools
@@ -65,6 +149,13 @@ TEST
 - **Spaces or Tabs?**
 - **What does JS commenting look like?** 
 - **What patterns are you following?** *(See [these](https://addyosmani.com/resources/essentialjsdesignpatterns/book/) [resources](https://shichuan.github.io/javascript-patterns/))*
+
+Lunar follows the AirBnB style guide https://github.com/airbnb/javascript
+
+- JSX alley difference
+- Anchor is valid
+- ESLint - Lunar. Was on DrugWatch but moved away.
+- *Find jQuery style guide* 
 
 ---------------
 
@@ -96,6 +187,9 @@ TEST
 - **Are you following the accessibility recommendations laid out in [this checklist](http://a11yproject.com/checklist.html)?**
 - **What accessibility-related [tools](http://a11yproject.com/resources.html) are you using in your workflow?**
 
+- Accessibility is largely an afterthought. 
+- No guidelines and/or tooling. 
+
 ---------------
 
 ## Tooling
@@ -124,6 +218,9 @@ It's important to recognize the difference between ["support" and "optimization"
 - **Are you using a [graded browser support](https://github.com/yui/yui3/wiki/Graded-Browser-Support) system?**
 - **Are there specific components that require [more specific grading](https://www.filamentgroup.com/lab/grade-the-components.html)?** 
 
+- IE8 - Whites and Lux (Legal) - 
+- 
+
 -----------
 
 ## Localization
@@ -144,4 +241,8 @@ It's important to recognize the difference between ["support" and "optimization"
 
 -----------
 
-*Feel free to modify or extend (such as adding specific sections for performance, accessibility, etc) this document for your own organization's needs. For questions, comments, additions, and corrections, please open an issue on Github and/or reach out to [@brad_frost](https://twitter.com/brad_frost) on Twitter.*
+
+
+
+
+Component-specific tools
